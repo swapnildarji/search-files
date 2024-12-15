@@ -15,11 +15,11 @@ function App() {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [severity, setSeverity] = useState('success');
-
+  const [firstSearch, setFirstSearch] = useState(false);
 
   const handleSearch = async () => {
     setLoading(true);
-
+    setFirstSearch(true)
     if (!searchTerm) {
       setLoading(false);
       showToast('Please Enter Search query', "info")
@@ -54,7 +54,16 @@ function App() {
       <Header />
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} handleSearch={handleSearch} />
 
-      {data && data.length && <FileList fileList={data} />}
+      {data && data.length ? 
+      <FileList fileList={data} /> : 
+      <>
+        {
+          firstSearch?<h2 style={{margin: "5rem"}}>Results not found</h2>:
+          <div></div>
+        }
+      </>
+      
+      }
 
       <Snackbar
         open={open}         // Controls whether the Snackbar is shown

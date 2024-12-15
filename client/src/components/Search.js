@@ -9,6 +9,9 @@ const SearchFiles = ({ searchTerm, setSearchTerm, handleSearch }) => {
                 <TextField id="outlined-basic" label="Enter Search term" variant="outlined" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                 <Button size="medium" variant="contained" onClick={handleSearch}>Search</Button>
             </Box>
+            <Box color='gray'>
+                Sample queries : '@gmail.com', 'something', 'process'
+            </Box>
         </>
     );
 };
