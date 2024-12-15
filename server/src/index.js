@@ -29,6 +29,12 @@ app.use(express.json());
 
 app.use(routes)
 
+app.get('/', (req, res) => {
+    res.json({
+      message: 'Hello, this is test route',
+    });
+  });
+
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.log(err)
