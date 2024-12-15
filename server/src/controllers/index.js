@@ -38,16 +38,16 @@ async function search(req, res) {
 
         const hits = response.body.hits.hits;
 
-        if (hits.length === 0) {
-            return res.status(404).json({ message: 'No results found' });
-        }
+        // if (hits.length === 0) {
+        //     return res.status(404).json({ message: 'No results found' });
+        // }
 
         return res.status(200).json({
-            message: 'Search results',
-            results: hits.map(hit => ({
-                id: hit._id,
+            message: 'Data Fetched Successfully',
+            data: hits.map(hit => ({
+                // id: hit._id,
                 title: hit._source.title,
-                content: hit._source.content,
+                // content: hit._source.content,
                 url: hit._source.url,
                 filePath: hit._source.filePath,
                 uploadedAt: hit._source.uploadedAt,
@@ -68,10 +68,11 @@ async function upload(req, res) {
     const fileExtention = req.file.originalname.split('.').pop().toLowerCase()
 
     const bucketName = `my-borneo-bucket`;
+    const newFileName = `${Date.now()}_${req.file.originalname}`
 
     const params = {
         Bucket: bucketName, // Your S3 bucket name
-        Key: `uploads/${Date.now()}_${req.file.originalname}`, // Unique file name
+        Key: `uploads/${newFileName}`, // Unique file name
         Body: req.file.buffer, // File buffer from multer
         ContentType: req.file.mimetype,
         ACL: 'public-read'
@@ -85,7 +86,7 @@ async function upload(req, res) {
 
 
         const document = {
-            title: req.file.originalname,
+            title: newFileName,
             content: '',
             url: `https://${bucketName}.s3.${config.awsRegion}.amazonaws.com/${encodedFilePath}`,
             filePath: params.Key,
