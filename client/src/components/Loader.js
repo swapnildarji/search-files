@@ -19,7 +19,7 @@ const styles = {
         textAlign: 'center',
     },
     content: {
-        zIndex: 1, // Ensure content is above the overlay
+        zIndex: 1,
     },
     overlay: {
         position: 'fixed',

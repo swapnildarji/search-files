@@ -5,16 +5,16 @@ import Search from './components/Search';
 import Header from './components/Header';
 import FileList from './components/FileList';
 import Loader from './components/Loader';
-import { Snackbar, Button } from '@mui/material';
+import { Snackbar } from '@mui/material';
 import { Alert } from '@mui/material';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
-  const [open, setOpen] = useState(false);  // State to control the Snackbar visibility
-  const [message, setMessage] = useState(''); // Message to show in the Snackbar
-  const [severity, setSeverity] = useState('success'); // Severity to control the toast type
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState('');
+  const [severity, setSeverity] = useState('success');
 
 
   const handleSearch = async () => {
@@ -53,7 +53,8 @@ function App() {
       {loading && <Loader />}
       <Header />
       <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} handleSearch={handleSearch} />
-      <FileList fileList={data} />
+
+      {data && data.length && <FileList fileList={data} />}
 
       <Snackbar
         open={open}         // Controls whether the Snackbar is shown
