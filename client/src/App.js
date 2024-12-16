@@ -19,7 +19,6 @@ function App() {
 
   const handleSearch = async () => {
     setLoading(true);
-    setFirstSearch(true)
     if (!searchTerm) {
       setLoading(false);
       showToast('Please Enter Search query', "info")
@@ -35,6 +34,7 @@ function App() {
       showToast('Something went Wrong!', 'error')
     } finally {
       setLoading(false);
+      setFirstSearch(true)
     }
   };
 
@@ -58,7 +58,7 @@ function App() {
       <FileList fileList={data} /> : 
       <>
         {
-          firstSearch?<h2 style={{margin: "5rem"}}>Results not found</h2>:
+          firstSearch ?<h2 style={{margin: "5rem"}}>Results not found</h2>:
           <div></div>
         }
       </>
