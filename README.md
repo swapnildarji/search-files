@@ -4,7 +4,7 @@
 
 ## Technologies Used
 
-This project involves a **Node.js** backend (server) and a **React.js** frontend (client), both deployed on **Vercel**. Below are the key technologies used in the project:
+This project involves a [**Node.js** backend (server)](./server) and a [**React.js** frontend (client)](./client), both deployed on **Vercel**. Below are the key technologies used in the project:
 
 ### Backend
 - **Node.js**: The server is built using Node.js to handle API requests, manage business logic.
